@@ -1,4 +1,4 @@
-FROM python:3.9.7-alpine
+FROM python:3.9
 
 LABEL "maintainer"="Jacobi Petrucciani <j@cobi.dev>"
 
@@ -6,8 +6,11 @@ ADD requirements.txt /requirements.txt
 ADD entrypoint.sh /entrypoint.sh
 ADD github.py /github.py
 
-RUN apk add bash gcc musl-dev && \
-    pip install -U pip && \
+RUN apt-get update && apt-get install -y \
+    bash gcc musl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install -U pip && \
     pip install -r requirements.txt
 
 ENTRYPOINT ["/entrypoint.sh"]
