@@ -7,6 +7,7 @@ ADD entrypoint.sh /entrypoint.sh
 ADD github.py /github.py
 
 RUN apk add bash gcc musl-dev && \
+    pip install -U pip && \
     pip install -r requirements.txt
 
 ENTRYPOINT ["/entrypoint.sh"]
