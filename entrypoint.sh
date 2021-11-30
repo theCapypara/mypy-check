@@ -3,7 +3,9 @@ set -ax
 
 # install requirements, if defined
 if [ ! -z "$3" ]; then
+    set -e
     pip install $3
+    set +e
 fi
 
 # mypy output file
