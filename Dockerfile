@@ -45,4 +45,9 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*;
 ## RUST END
 
+## GTK SUPPORT
+RUN apt-get update && apt-get install -y \
+    libgirepository1.0-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 ENTRYPOINT ["/entrypoint.sh"]
