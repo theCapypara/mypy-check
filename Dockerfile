@@ -4,7 +4,6 @@ FROM python:$pyver
 
 LABEL "maintainer"="Jacobi Petrucciani <j@cobi.dev>"
 
-ADD requirements.txt /requirements.txt
 ADD entrypoint.sh /entrypoint.sh
 ADD github.py /github.py
 ADD _manylinux.py /usr/local/lib/python3.9/_manylinux.py
@@ -14,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install -U pip && \
-    pip install -r requirements.txt
+    pip install --upgrade mypy
 
 ## RUST
 ENV RUSTUP_HOME=/usr/local/rustup \
